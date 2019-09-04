@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mixins </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>mixins</h1>
+    <hr>    
+    <!-- 一。一般的用途 -->
+    <!-- 1.在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，
+        这时用混入会减少源代码的污染。 -->
+    <!-- 2.很多地方都会用到的公用方法，用混入的方法可以减少代码量，实现代码重用。 -->
+    <!-- 总结：（1）增加临时方法，减少源代码污染（2）写公共方法，减少代码量 -->
+
+    <!-- 二。 mixins 执行顺序 -->
+    <!-- 从执行顺序来讲，一般都是混入的先执行，然后构造器里面的再执行 ，执行了两遍，不是覆盖 -->
+    <div id="app">
+        {{num}}
+        <button @click="add()">add</button>
+    </div>
+    <script  type="text/javascript">
+    var addLog = {
+        updated:function(){
+            console.log("数据发生变化,变化成"+this.num+".");
+        }
+    }
+    // 三。全局API混写方式
+    // Vue.mixin({
+    //     updated:function(){
+    //         console.log('我是全局被混入的');
+    //     }
+    // })    
+    var app = new Vue({
+        el:'#app',
+        data:{
+            num:1
+        },
+        methods:{
+            add:function(){
+                this.num++;
+            }
+        },
+        mixins:[addLog],
+        updated:function(){
+            console.log("构造器里面的updated方法");
+        }
+    })
+    
+
+    </script>
+</body>
+</html>

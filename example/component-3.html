@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component-3组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <dandan></dandan>
+    </div>
+    <script>
+        // 构造器外部写局部注册组件
+        // var dandanT = {
+        //     template:`<p>dandan from china</p>`
+        // }
+        // 父子组件的嵌套
+
+
+        // 应用场景：一个自定义组件内部需要其他自定义组件
+        var city = {
+            template:'<div>qindao of china</div>'
+        }        
+        var dandanT = {
+            template:`
+            <div>
+            <p>dandan from china</p>
+            <city></city>
+            </div>
+            `,
+            components:{
+                "city":city
+            }
+
+        }
+
+
+
+        var app = new Vue({
+            el:'#app',
+            components: {
+                "dandan":dandanT
+            }
+        });
+    
+    </script>
+</body>
+</html>

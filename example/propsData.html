@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>propsData 全局扩展的数据传递</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>propsData option  Demo</h1>
+    <hr>
+    <header></header>
+    <script>
+        var a = Vue.extend({
+            template:`<p>{{message}}--{{b}}</p>`,
+            data:function(){
+                return {
+                    message:'I am dandan'
+                }
+            },
+            props:['b']
+        });
+        // new a().$mount('header');
+        //如果想要从外部想里面的template传值，可以用propsData 
+        new a({propsData:{b:'我知道了'}}).$mount('header');
+    </script>
+</body>
+</html>

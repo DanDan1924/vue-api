@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template 模板</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <!-- 一共有三种制作模板的方式 -->
+
+    
+    <!-- <template id="tem1">
+        <h2 style="color:red">我是template 标签模板</h2>
+    </template> -->
+
+    <!-- 也可以加src外部引用 -->
+    <script type="x-template" id="tem2">
+        <h2 style="color:red">我是script 标签模板</h2>
+    </script>
+    <script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'hello world!'
+        },
+        template:tem2
+        // 适用于小数量的模板
+        // template:`
+        //     <h2 style="color:red">我是选项模板</h2>
+        // `
+    })
+    </script>
+</body>
+</html>

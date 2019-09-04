@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methods 方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div> {{a}}  </div>
+        
+        <button @click="add()">add</button>
+    </div>
+    <div id="app1">
+        <div>
+            {{a}}
+        </div>
+        <btn @click.native = "add()"></btn>
+    </div>
+
+    <!-- （2）作用域外部 调用构造器里 的方法（不经常用到，如果用到说明代码组织不够好）-->
+    <button onclick="app.add()"></button>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el:'#app',
+            data:{
+                a:1
+            },
+            methods:{
+                add:function(){
+                    this.a++;
+                }
+            }
+        })
+        // （1）在实际开发中经常需要把某个按钮封装成组件，然后反复使用，
+        // 如何让组件调用构造器里的方法，而不是组件里的方法。就需要用到我们的.native修饰器了。
+        var btn = {
+            template:`<button>组件add</button>`
+        }
+        var app1 = new Vue({
+            el:"#app1",
+            data:{
+                a:1
+            },
+            methods:{
+                add:function(){
+                    this.a++;
+                }
+            },
+            components:{
+                'btn':btn
+            }
+        })
+    </script>
+</body>
+</html>

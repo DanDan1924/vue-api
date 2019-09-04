@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据双向绑定</title>
+</head>
+<body>
+    <script>
+        // 未完成
+        function defineReactive (obj, key, val) {
+            var dep = new Dep();  //这是一个构造函数  其原型是为属性添加订阅者
+            Object.defineProperty(obj, key, {
+            get: function() {
+                    if(Dep.target) {
+                        dep.addSub(Dep.target);  //添加订阅者到Dep实例对象
+                    }
+                    return val;  // 返回监听到的value值
+                },
+                set: function (newVal) {
+                    if(newVal === val) return;
+                    val = newVal;  // 写入新的value值
+                    dep.notify();  // 作为发布者发出通知 然后dep会迭代调用各自的update方法来更新视图
+                }
+            });
+        }
+        function observe(obj, vm) {
+            Object.keys(obj).forEach(function(key) {
+                defineReactive(vm, key, obj[key]);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component-1组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <dandan from-here = 'china'></dandan>
+        
+    </div>
+    <script>
+        // component组件props属性设置,
+        // props选项就是设置和获取标签上的属性值的
+        // 带-用驼峰命名法
+        // 在构造器里面向组件传值，就用v-bind:
+    var app = new Vue({
+        el:'#app',
+        components:{
+            "dandan":{
+                template:`<div style="color:green;">局部注册的dandan组件来自{{fromHere}}</div>`,
+                props:['fromHere']
+            }
+        }
+    });
+
+    </script>
+</body>
+</html>

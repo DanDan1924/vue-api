@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue.extend-扩展实例构造器</title>
+</head>
+<body>
+    <h1>vue.extend-扩展实例构造器</h1>
+    <hr>
+    <au></au>
+ 
+    <script type="text/javascript">
+        var authorExtend = Vue.extend({
+            template:"<a :href='authorUrl'>{{authorName}}</a>",
+            data:function(){
+                return {
+                    authorUrl:'http://www.baidu.com',
+                    authorName:"dandan"
+                }
+            }
+        })
+        // 挂载在随便写的标签
+        new authorExtend().$mount('au');
+        //挂载在普通标签上
+        new authorExtend().$mount('#author');
+    </script>
+</body>
+</html>

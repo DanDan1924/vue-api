@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <script>
+        // 触发高频事件后n秒内函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间
+        // 思路：
+        // 每次触发事件时都取消之前的延时调用方法
+        function debounce(fn){
+            var timer = null;
+            console.log(this) //window,debounce这个函数只执行一次，input是执行里面的东西
+            return function (){
+                console.log(this) //input
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    console.log(this); //window
+                    fn.apply(this,arguments);
+                },500)
+            }
+        }
+        function sayHi() {
+            console.log(arguments);
+            console.log('防抖成功');
+        }
+        var inp = document.getElementById('inp');
+        // var inFun = new ;
+        inp.addEventListener('input',debounce(sayHi)); // 防抖
+    </script>
+</body>
+</html>

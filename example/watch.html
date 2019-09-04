@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch 监控数据</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>watch 监控数据</h1>
+    <hr>
+    <div id="app">
+        <p>当前温度：{{wendu}}°</p>
+        <p>穿衣攻略：{{chuanyi}}</p>
+        <button @click="zengjiawendu()">增加温度</button>
+        <button @click="jiangdiwendu()">降低温度</button>
+    </div>
+    <script  type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        data:{
+            'wendu':6,
+            'chuanyi':'长袖'
+        },
+        methods:{
+            zengjiawendu:function(){
+                this.wendu+=4;
+            },
+            jiangdiwendu:function(){
+                this.wendu-=4;
+            }
+        }
+        // watch:{
+        //     wendu:function(newval,oldval){
+        //         if(newval>26){
+        //             this.chuanyi='短袖';
+        //         }else if(newval<=26 && newval>0){
+        //             this.chuanyi='长袖';
+        //         }else{
+        //             this.chuanyi='羽绒服';
+        //         }
+        //     }
+        // }
+    });
+    // 第二种写法：
+    app.$watch('wendu',function(newval,oldval){
+        if(newval>26){
+            this.chuanyi='短袖';
+        }else if(newval<=26 && newval>0){
+            this.chuanyi='长袖';
+        }else{
+            this.chuanyi='羽绒服';
+        }
+    })
+    </script>
+</body>
+</html>

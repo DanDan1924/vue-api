@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component-2组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <jingjing></jingjing>
+        <dandan></dandan>
+    </div>
+    <script>
+        // 注册全局组件
+    Vue.component("jingjing",{
+        template: `<div style="color:red;">全局注册的jingjing组件</div>`
+    });
+        //注册局部组件 
+    var app = new Vue({
+        el:'#app',
+        components:{
+            "dandan":{
+                template:`<div style="color:green;">局部注册的dandan组件</div>`
+            }
+        }
+    });
+    // 组件和指令的区别
+    // 组件注册的是一个标签
+    // 指令注册的是已有标签里的一个属性
+    
+    </script>
+</body>
+</html>
